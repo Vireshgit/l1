@@ -1,13 +1,33 @@
 pipeline{
      agent any
-     parameters {
-        string description: 'enter firstname', name: 'firstName'
-        string description: 'enter lastname', name: 'lastName'
+     environment {
+	  appEnv = "DEV"
+	  appEnv = "QA"
+	  appEnv = "UAT"
      }
      stages{
-        stage('check_out_'){
+        stage('deploy to DEV'){
+	   when {
+		  environment name: 'appEnv', value: 'DEV'
+	   }
 	  steps{
-	  	echo "Hi ${params.firstName} ${params.lastName}"
+	  	echo "deploy to dev"
+   	  }
+        }
+        stage('deploy to QA'){
+           when {
+	          environment name: 'appEnv', value: 'QA'
+	   }
+	  steps{
+	  	echo "deploy to qa"
+   	  }
+        }
+        stage('deploy to UAT'){
+            when {
+	          environment name: 'appEnv', value: 'UAT'
+	   }
+	  steps{
+	  	echo "deploy to uat"
    	  }
         }
      }
