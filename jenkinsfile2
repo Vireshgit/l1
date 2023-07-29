@@ -1,32 +1,38 @@
 pipeline{
      agent any
-     environment {
-	  appEnv = "DEV"
-	  appEnv = "QA"
-	  appEnv = "UAT"
+     parameters {
+	  choice choices: ['DEV', 'QA', 'UAT', 'PROD'], description: 'choose environment', name: 'appEnv'
      }
      stages{
         stage('deploy to DEV'){
 	   when {
-		  environment name: 'appEnv', value: 'DEV'
+		  expression { params.appEnv == DEV }
 	   }
-	  steps{
+	    steps{
 	  	echo "deploy to dev"
    	  }
         }
         stage('deploy to QA'){
            when {
-	          environment name: 'appEnv', value: 'QA'
+	          expression { params.appEnv == QA }
 	   }
-	  steps{
+	    steps{
 	  	echo "deploy to qa"
    	  }
         }
         stage('deploy to UAT'){
             when {
-	          environment name: 'appEnv', value: 'UAT'
+	          expression { params.appEnv == UAT }
 	   }
-	  steps{
+	    steps{
+	  	echo "deploy to uat"
+   	  }
+        }
+        stage('deploy to PROD'){
+            when {
+	          expression { params.appEnv == PROD }
+	   }
+	    steps{
 	  	echo "deploy to uat"
    	  }
         }
