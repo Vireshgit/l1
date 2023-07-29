@@ -1,0 +1,14 @@
+pipeline{
+     agent any
+     environment {
+        TOMCAT_URL = "192.168.22.1"
+        TOMCAT_USER = "ec2-user"
+     }
+     stages{
+        stage('deploy'){
+	        steps{
+      	  	echo "Hi ${env.TOMCAT_URL} ${params.TOMCAT_USER}"
+         	}
+        }
+     }
+}
