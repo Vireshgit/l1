@@ -33,7 +33,7 @@ pipeline{
 	          expression { params.appEnv == PROD }
 	   }
 	    steps{
-	  	echo "deploy to uat"
+	  	echo "deploy to prod"
    	  }
         }
      }
