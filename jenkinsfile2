@@ -6,7 +6,7 @@ pipeline{
      stages{
         stage('deploy to DEV'){
 	   when {
-		  expression { params.appEnv == DEV }
+		  expression { params.appEnv == "DEV" }
 	   }
 	    steps{
 	  	echo "deploy to dev"
@@ -14,7 +14,7 @@ pipeline{
         }
         stage('deploy to QA'){
            when {
-	          expression { params.appEnv == QA }
+	          expression { params.appEnv == "QA" }
 	   }
 	    steps{
 	  	echo "deploy to qa"
@@ -22,7 +22,7 @@ pipeline{
         }
         stage('deploy to UAT'){
             when {
-	          expression { params.appEnv == UAT }
+	          expression { params.appEnv == "UAT" }
 	   }
 	    steps{
 	  	echo "deploy to uat"
@@ -30,7 +30,7 @@ pipeline{
         }
         stage('deploy to PROD'){
             when {
-	          expression { params.appEnv == PROD }
+	          expression { params.appEnv == "PROD" }
 	   }
 	    steps{
 	  	echo "deploy to prod"
